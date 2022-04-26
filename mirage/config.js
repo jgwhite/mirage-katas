@@ -1,7 +1,15 @@
 export default function () {
-  this.get('https://api.test/ping', () => {
+
+  this.urlPrefix = "https://api.test";
+
+  this.get('/ping', () => {
     return 'pong';
   });
+
+  this.get('/ping.json', () => {
+    return {result: 'pong'};
+  });
+
   // These comments are here to help you get started. Feel free to delete them.
   /*
     Config (with defaults).
