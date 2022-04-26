@@ -1,8 +1,10 @@
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+import { setupMirage } from 'ember-cli-mirage/test-support';
 
 module('Acceptance | mirage', function (hooks) {
   setupApplicationTest(hooks);
+  setupMirage(hooks);
 
   test('a basic text endpoint', async function (assert) {
     let response = await fetch('https://api.test/ping');
