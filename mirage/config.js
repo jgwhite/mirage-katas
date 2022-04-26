@@ -10,6 +10,10 @@ export default function () {
     return {result: 'pong'};
   });
 
+  this.get('/documents', (schema, request) => {
+    return schema.documents.all();
+  })
+
   // These comments are here to help you get started. Feel free to delete them.
   /*
     Config (with defaults).
