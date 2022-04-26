@@ -1,18 +1,13 @@
 export default function () {
+  this.urlPrefix = 'https://api.test';
 
-  this.urlPrefix = "https://api.test";
-
-  this.get('/ping', () => {
-    return 'pong';
-  });
+  this.get('/ping', () => 'pong');
 
   this.get('/ping.json', () => {
-    return {result: 'pong'};
+    'pong';
   });
 
-  this.get('/documents', (schema, request) => {
-    return schema.documents.all();
-  })
+  this.get('/documents');
 
   // These comments are here to help you get started. Feel free to delete them.
   /*
