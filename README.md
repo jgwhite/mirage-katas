@@ -1,57 +1,48 @@
-# mirage-katas
+# Mirage Katas
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Inspired by [Exercism](https://exercism.org/), this repo contains a set of
+challenges designed to explore [Mirage](https://miragejs.com/). The challenges
+are in the form of tests. The aim of the game is to make the tests pass, one at
+a time, learning new features of Mirage along the way.
 
-## Prerequisites
+## How do I get started?
 
-You will need the following things properly installed on your computer.
+1. `yarn install`
+2. `yarn start`
+3. Open [mirage-test.js](./tests/acceptance/mirage-test.js) in your preferred editor
+4. Visit [localhost:4200/tests](http://localhost:4200/tests) in your preferred browser
+5. Start trying to make the tests pass!
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/)
-* [Yarn](https://yarnpkg.com/)
-* [Ember CLI](https://cli.emberjs.com/release/)
-* [Google Chrome](https://google.com/chrome/)
+If you get stuck along the way, see [HINTS.md](./HINTS.md).
 
-## Installation
+## Anything else I should know?
 
-* `git clone <repository-url>` this repository
-* `cd mirage-katas`
-* `yarn install`
+These challenges are geared towards
+[ember-cli-mirage](https://ember-cli-mirage.com/), so it’s usually best to start
+with the [ember-cli-mirage documentation](https://www.ember-cli-mirage.com/docs)
+before moving to the [core Mirage documentation](https://miragejs.com/docs).
 
-## Running / Development
+Note that the tests don’t involve Ember _at all_. Instead, we’re using standard
+browser `fetch` API to make network requests, and we’re asserting against the
+responses we get back. We’ve housed the katas in an Ember app because it’s
+convenient to do so, but put Ember out of your mind as you work through the
+challenges. This can be tricky because some of Mirage’s terminology is the same
+as Ember’s, so keep your frame of reference to Mirage and its concepts. To put
+it plainly: you can ignore the `app` directory entirely.
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
+It’s also worth knowing that Mirage was largely created by one person, the
+wonderful [Sam Selikoff](https://github.com/samselikoff). It’s a practical tool
+written by a normal person to scratch their own itch. The code and intentions
+behind it are readable and understandable. While it contains many conveniences
+that seem like magic, the magic is just there to make writing tests and fixtures
+more pleasant, not because there’s a “right” way to do things. Mirage, more than
+anything else, wants to make the job of building rich, robust javascript apps
+more fun.
 
-### Code Generators
+## How can I contribute?
 
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Linting
-
-* `yarn lint`
-* `yarn lint:fix`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://cli.emberjs.com/release/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+- If you have an idea for a new challenge, submit a PR.
+- If you have an idea for a hint or documentation improvement, submit a PR.
+- If you see a mistake, submit a PR.
+- If you’re not comfortable submitting a PR, submit an issue.
+- If you’re not comfortable submitting an issue, reach out to a contributor via email, Slack, or Discord.
