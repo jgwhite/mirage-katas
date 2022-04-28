@@ -80,4 +80,24 @@ module('Acceptance | mirage', function (hooks) {
 
     assert.propContains(actual, expected);
   });
+
+  test('a basic factory', async function (assert) {
+    this.server.create('pizza');
+
+    let response = await fetch('https://api.test/pizzas');
+    let actual = await response.json();
+    let expected = {
+      data: [
+        {
+          id: '1',
+          type: 'pizzas',
+          attributes: {
+            kind: 'margherita',
+          },
+        },
+      ],
+    };
+
+    assert.propContains(actual, expected);
+  });
 });
