@@ -15,6 +15,11 @@ a time, learning new features of Mirage along the way.
 
 If you get stuck along the way, see [HINTS.md](./HINTS.md).
 
+**Note:** when you add new files to the [`mirage` directory](./mirage) you must
+restart the server (ctrl-c and `yarn start` again). This is probably a bug in
+ember-cli-mirage but we’re not exactly sure right now. If you can think of a
+fix, please submit a PR.
+
 ## Anything else I should know?
 
 These challenges are geared towards
