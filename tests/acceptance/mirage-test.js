@@ -100,4 +100,59 @@ module('Acceptance | mirage', function (hooks) {
 
     assert.propContains(actual, expected);
   });
+
+  test('a dynamic factory attribute', async function (assert) {
+    this.server.createList('rocky', 6);
+
+    let response = await fetch('https://api.test/rockies');
+    let actual = await response.json();
+    let expected = {
+      data: [
+        {
+          id: '1',
+          type: 'rockies',
+          attributes: {
+            title: 'Rocky',
+          },
+        },
+        {
+          id: '2',
+          type: 'rockies',
+          attributes: {
+            title: 'Rocky II',
+          },
+        },
+        {
+          id: '3',
+          type: 'rockies',
+          attributes: {
+            title: 'Rocky III',
+          },
+        },
+        {
+          id: '4',
+          type: 'rockies',
+          attributes: {
+            title: 'Rocky IV',
+          },
+        },
+        {
+          id: '5',
+          type: 'rockies',
+          attributes: {
+            title: 'Rocky V',
+          },
+        },
+        {
+          id: '6',
+          type: 'rockies',
+          attributes: {
+            title: 'Rocky Balboa',
+          },
+        },
+      ],
+    };
+
+    assert.propContains(actual, expected);
+  });
 });
