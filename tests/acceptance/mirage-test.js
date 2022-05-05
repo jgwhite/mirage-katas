@@ -155,4 +155,65 @@ module('Acceptance | mirage', function (hooks) {
 
     assert.propContains(actual, expected);
   });
+
+  test('a POST handler with JSON:API', async function (assert) {
+    let postResponse = await fetch('https://api.test/pizzas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/vnd.api+json' },
+      body: JSON.stringify({
+        data: {
+          type: 'pizzas',
+          attributes: {
+            kind: 'quattro stagioni',
+          },
+        },
+      }),
+    });
+
+    assert.strictEqual(postResponse.status, 201);
+
+    let getResponse = await fetch('https://api.test/pizzas');
+    let actual = await getResponse.json();
+    let expected = {
+      data: [
+        {
+          type: 'pizzas',
+          id: '1',
+          attributes: {
+            kind: 'quattro stagioni',
+          },
+        },
+      ],
+    };
+
+    assert.propContains(actual, expected);
+  });
+
+  test('a POST handler with generic JSON', async function (assert) {
+    let postResponse = await fetch('https://api.test/pizzas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        kind: 'quattro stagioni',
+      }),
+    });
+
+    assert.strictEqual(postResponse.status, 201);
+
+    let getResponse = await fetch('https://api.test/pizzas');
+    let actual = await getResponse.json();
+    let expected = {
+      data: [
+        {
+          type: 'pizzas',
+          id: '1',
+          attributes: {
+            kind: 'quattro stagioni',
+          },
+        },
+      ],
+    };
+
+    assert.propContains(actual, expected);
+  });
 });
