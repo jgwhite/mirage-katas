@@ -156,6 +156,24 @@ module('Acceptance | mirage', function (hooks) {
     assert.propContains(actual, expected);
   });
 
+  test('a basic trait', async function (assert) {
+    let document = this.server.create('document', 'rfc');
+
+    let response = await fetch(`https://api.test/documents/${document.id}`);
+    let actual = await response.json();
+    let expected = {
+      data: {
+        id: String(document.id),
+        type: 'documents',
+        attributes: {
+          title: 'RFC-001: Example RFC',
+        },
+      },
+    };
+
+    assert.propContains(actual, expected);
+  });
+
   test('a POST handler with JSON:API', async function (assert) {
     let postResponse = await fetch('https://api.test/pizzas', {
       method: 'POST',
