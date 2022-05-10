@@ -234,4 +234,48 @@ module('Acceptance | mirage', function (hooks) {
 
     assert.propContains(actual, expected);
   });
+
+  test('using a serializer to auto-include related records', async function (assert) {
+    this.server.create('album', {
+      title: 'Zoning',
+      artists: [
+        this.server.create('artist', {
+          name: 'Mary Lou Williams',
+        }),
+      ],
+    });
+
+    let response = await fetch('https://api.test/albums/1');
+    let actual = await response.json();
+    let expected = {
+      data: {
+        id: '1',
+        type: 'albums',
+        attributes: {
+          title: 'Zoning',
+        },
+        relationships: {
+          artists: {
+            data: [
+              {
+                id: '1',
+                type: 'artists',
+              },
+            ],
+          },
+        },
+      },
+      included: [
+        {
+          id: '1',
+          type: 'artists',
+          attributes: {
+            name: 'Mary Lou Williams',
+          },
+        },
+      ],
+    };
+
+    assert.propContains(actual, expected);
+  });
 });
