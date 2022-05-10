@@ -278,4 +278,37 @@ module('Acceptance | mirage', function (hooks) {
 
     assert.propContains(actual, expected);
   });
+
+  test('a simple PATCH handler with JSON:API', async function (assert) {
+    let pizza = this.server.create('pizza', { kind: 'Margherita' });
+    let response = await fetch(`https://api.test/pizzas/${pizza.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/vnd.api+json' },
+      body: JSON.stringify({
+        data: {
+          id: pizza.id,
+          type: 'pizzas',
+          attributes: {
+            kind: 'Marinara',
+          },
+        },
+      }),
+    });
+    let actual = await response.json();
+    let expected = {
+      data: {
+        id: pizza.id,
+        type: 'pizzas',
+        attributes: {
+          kind: 'Marinara',
+        },
+      },
+    };
+
+    pizza.reload();
+
+    assert.strictEqual(response.status, 200, 'status was 200');
+    assert.propContains(actual, expected, 'payload met expectations');
+    assert.strictEqual(pizza.kind, 'Marinara', 'mirage’s db updated correctly');
+  });
 });
