@@ -1,4 +1,15 @@
-export default function () {
+import { createServer } from 'miragejs';
+
+export default function (config) {
+  let finalConfig = {
+    ...config,
+    routes,
+  };
+
+  return createServer(finalConfig);
+}
+
+function routes() {
   // These comments are here to help you get started. Feel free to delete them.
   /*
     Config (with defaults).
